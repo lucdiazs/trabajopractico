@@ -1,0 +1,12 @@
+.card {
+    height: 12em;
+    border-radius: 10px;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    width: 8em;
+}
+
+img {
+    height: 100%;
+}
