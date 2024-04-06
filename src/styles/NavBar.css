@@ -1,5 +1,31 @@
+/* NavBar.css */
+
 nav {
-    height: 4em;
-    width: 100%;
-    background-color: rgb(17, 12, 85);
-}
+    display: flex;
+    justify-content: space-between; /* Coloca los elementos a cada extremo del NavBar */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 10px 20px; /* Añade espacio interno al NavBar */
+    background-color: #333; /* Color de fondo del NavBar */
+    color: #fff; /* Color de texto del NavBar */
+  }
+  
+  .logo {
+    display: flex; /* Permite alinear los elementos horizontalmente */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  .logo h1 {
+    margin-left: 10px; /* Añade espacio a la izquierda del texto del logo */
+  }
+  
+  .carrito-info {
+    display: flex; /* Permite alinear los elementos horizontalmente */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  .icono-pizza,
+  .icono-carrito {
+    font-size: 20px; /* Tamaño de los iconos */
+    margin-right: 5px; /* Añade espacio a la derecha de los iconos */
+  }
+  
