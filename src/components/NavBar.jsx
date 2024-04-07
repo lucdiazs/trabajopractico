@@ -16,30 +16,25 @@ const NavBar = () => {
     return carrito.reduce((total, pizza) => total + pizza.cantidad, 0);
   };
 
-  const Active = ({isActive}) => (isActive ? 'active' : 'idle')
-
+  const Active = ({ isActive }) => (isActive ? 'active' : 'idle');
 
   return (
-    <>
-      <nav>
-        <NavLink className={Active} to={'/'}>
-          <div className="logo">
-            <LuPizza className="icon" />Pizzería Mamma Mia!
-          </div>
-        </NavLink>
-        <div className="container-carrito-nav">
-            <NavLink className={Active} to={"/carrito"}><CiShoppingCart className="carrito-icn"/></NavLink>
-            <NavLink className='cantidades' to={"/carrito"}>
-              <p>    
-                 Llevas {calcularCantidadTotal()} {calcularCantidadTotal() > 1 || calcularCantidadTotal() === 0 ?'pizzas' : 'pizza'} 
-              </p>
-              <p>
-                 Total ${calcularPrecioTotal()}
-              </p>
-            </NavLink>
+    <nav>
+      <NavLink className={Active} to={'/'}>
+        <div className="logo">
+          <LuPizza className="icon" />Pizzería Mamma Mia!
         </div>
-      </nav>
-    </>
+      </NavLink>
+      <div className="container-carrito-nav">
+        <NavLink className={Active} to={"/carrito"}>
+          <CiShoppingCart className="carrito-icn" />
+        </NavLink>
+        <NavLink className='cantidades' to={"/carrito"}>
+          <p>Llevas {calcularCantidadTotal()} {calcularCantidadTotal() > 1 || calcularCantidadTotal() === 0 ? 'pizzas' : 'pizza'} </p>
+          <p>Total ${calcularPrecioTotal()}</p>
+        </NavLink>
+      </div>
+    </nav>
   );
 };
 

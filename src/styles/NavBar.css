@@ -1,30 +1,11 @@
-nav {
-  height: 2em;
-  background-color: rgb(0, 0, 0);
-  display :flex ;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-}
-.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-}
-.icon {
-  font-size: 30px;
-  color: rgb(255, 255, 255);
-}
 .container-carrito-nav {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
   align-items: center;
 }
+
 .carrito-icn {
-  font-size: 35px;
+  font-size: 25px; /* Reducir el tamaño del icono */
+  color: white;
 }
 
 .cantidades {
@@ -32,4 +13,31 @@ nav {
   flex-direction: column;
   text-decoration: none;
   color: white;
+  font-size: 14px; /* Tamaño de fuente */
+  font-weight: bold; /* Texto en negrita */
+  margin-right: 10px; /* Espacio a la derecha */
+}
+
+.cantidades p {
+  margin: 5px 0; /* Espaciado entre párrafos */
+}
+
+nav {
+  height: 60px; /* Ajustar la altura según tus necesidades */
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Añadir relleno horizontal */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave en la parte inferior */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 30px;
+  color: rgb(255, 255, 255);
 }

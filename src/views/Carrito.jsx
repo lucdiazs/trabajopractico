@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
-import '../styles/Carrito.css'
-
+import '../styles/Carrito.css';
 
 function Carrito() {
     const { carrito, setCarrito } = useContext(MyContext);
@@ -26,13 +25,12 @@ function Carrito() {
 
     const decrementarCantidad = (id) => {
         const updatedCarrito = carrito.map((pizza) =>
-            pizza.id === id && pizza.cantidad >= 1 ? { ...pizza, cantidad: pizza.cantidad - 1 } : pizza
+            pizza.id === id && pizza.cantidad > 0 ? { ...pizza, cantidad: pizza.cantidad - 1 } : pizza
         );
         setCarrito(updatedCarrito);
     };
 
     return (
-        <>
         <div className='max-container-carrito'>
             <div className='card-carrito'>
                 <h2>Tu Pedido</h2>
@@ -42,21 +40,17 @@ function Carrito() {
                             {pizza.nombre} 
                             <div className='buttons-carrito'> 
                                 <p> Precio ${calcularPrecioPizza(pizza)}</p>
-
                                 <button onClick={() => incrementarCantidad(pizza.id)}>+</button>
                                 {pizza.cantidad}
                                 <button onClick={() => decrementarCantidad(pizza.id)}>-</button>
-
                             </div>
                         </li>
                     ))}
                 </ul>
                 <hr />
                 <p className='total'>Total: ${calcularPrecioTotal()}</p>
-                <button>Cancelar totalidad</button>
             </div>
         </div>
-        </>
     );
 }
 

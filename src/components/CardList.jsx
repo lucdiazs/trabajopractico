@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 import '../styles/Card.css';
 import { LuPizza } from "react-icons/lu";
 
-function CardList() {
+const CardList = () => {
     const navigate = useNavigate();
     const { PizzasData, carrito, setCarrito } = useContext(MyContext);
 
@@ -13,17 +12,13 @@ function CardList() {
         navigate(`/pizzas/${id}`);
     };
 
-    const handleAgregarClick = (id, nombre ,precio) => {
-        const pizzaExistente = carrito.find((item) => item.id === id);
+    const handleAgregarClick = (id, nombre, precio) => {
+        const pizzaExistente = carrito.find(item => item.id === id);
+        const updatedCarrito = pizzaExistente
+            ? carrito.map(item => (item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item))
+            : [...carrito, { id, nombre, cantidad: 1, precio }];
 
-        if (pizzaExistente) {
-            const updatedCarrito = carrito.map((item) =>
-                item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
-            );
-            setCarrito(updatedCarrito);
-        } else {
-            setCarrito([...carrito, { id, nombre, cantidad: 1, precio }]);
-        }
+        setCarrito(updatedCarrito);
     };
 
     return (
@@ -36,7 +31,7 @@ function CardList() {
                         <ul>
                             <h4>Ingredientes:</h4>
                             {pizza.ingredients.map((ingrediente, index) => (
-                                <li key={index}><LuPizza/>{ingrediente}</li>
+                                <li key={index}><LuPizza />{ingrediente}</li>
                             ))}
                         </ul>
                         <hr />
@@ -46,11 +41,10 @@ function CardList() {
                             <button className='añadir' onClick={() => handleAgregarClick(pizza.id, pizza.name, pizza.price)}>Añadir</button>
                         </div>
                     </div>
-                    
                 </div>
             ))}
         </>
     );
-}
+};
 
 export default CardList;
