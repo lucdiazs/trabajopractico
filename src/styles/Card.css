@@ -47,7 +47,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     width: 20%;
-    border: 1px solid rgb(0, 0, 0);
+    border: 5px solid rgb(0, 0, 0);
     color: rgb(0, 0, 0);
     border-radius: 10px; /* Añadir bordes redondeados */
     overflow: hidden; /* Para que la imagen no sobresalga */
