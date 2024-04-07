@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { MyContext } from '../context/MyContext';
+import { LuPizza } from "react-icons/lu";
+import '../styles/PizzaDetail.css'
+
 
 function PizzaDetail() {
     const { id } = useParams();
@@ -28,32 +31,47 @@ function PizzaDetail() {
                 setCarrito(updatedCarrito);
             } else {
                 const precioTotal = pizza.price * 1;
-                const pizzaConPrecio = { ...pizza, cantidad: 1, precio: precioTotal, nombre: pizza.name }; // Añade el nombre aquí
+                const pizzaConPrecio = { ...pizza, cantidad: 1, precio: precioTotal, nombre: pizza.name }
                 setCarrito([...carrito, pizzaConPrecio]);
             }
         }
     };
 
     if (loading) {
-        return <div>Cargando...</div>;
+        return <div>Buscando pizzas...</div>;
     }
 
     if (!pizza) {
-        return <div>No se encontraron detalles para esta pizza.</div>;
+        return <div>Falla al cargar detalles para esta pizza.</div>;
     }
 
     return (
-        <div>
-            <h2>{pizza && pizza.name}</h2>
-            <p>Ingredientes:</p>
-            <ul>
-                {pizza.ingredients.map((ingrediente, index) => (
-                    <li key={index}>{ingrediente}</li>
-                ))}
-            </ul>
-            <p>Precio: {pizza.price}</p>
-            <button onClick={addToCart}>Agregar al carrito</button>
+        <>
+        <div className='max-container'>
+        <div className='container'>
+            <img src={pizza.img} alt={pizza.name} />
+            <div className='container-detail'>
+                <h2>{pizza && pizza.name}</h2>
+                <p className='desc'>{pizza.desc}</p>
+                <div className='ing'>
+                    <p>Ingredientes:</p>
+                    <ul>
+                        {pizza.ingredients.map((ingrediente, index) => (
+                            <li key={index}><LuPizza/>{ingrediente}</li>
+                        ))}
+                    </ul>
+
+                </div>
+                <hr />
+                <div className='price-btn'>
+                    <p>Precio: $ {pizza.price}</p>
+                    <button onClick={addToCart}>Agregar al carrito</button>
+
+                </div>
+            </div>
         </div>
+        </div>
+        </>
     );
 }
 

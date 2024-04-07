@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
+import '../styles/Carrito.css'
+
 
 function Carrito() {
     const { carrito, setCarrito } = useContext(MyContext);
@@ -24,25 +26,37 @@ function Carrito() {
 
     const decrementarCantidad = (id) => {
         const updatedCarrito = carrito.map((pizza) =>
-            pizza.id === id && pizza.cantidad > 1 ? { ...pizza, cantidad: pizza.cantidad - 1 } : pizza
+            pizza.id === id && pizza.cantidad >= 1 ? { ...pizza, cantidad: pizza.cantidad - 1 } : pizza
         );
         setCarrito(updatedCarrito);
     };
 
     return (
-        <div>
-            <h2>Carrito</h2>
-            <ul>
-                {carrito.map((pizza) => (
-                    <li key={pizza.id}>
-                        {pizza.nombre} - Cantidad: {pizza.cantidad} - Precio por pizza: {calcularPrecioPizza(pizza)}
-                        <button onClick={() => incrementarCantidad(pizza.id)}>+</button>
-                        <button onClick={() => decrementarCantidad(pizza.id)}>-</button>
-                    </li>
-                ))}
-            </ul>
-            <p>Precio total de todas las pizzas: {calcularPrecioTotal()}</p>
+        <>
+        <div className='max-container-carrito'>
+            <div className='card-carrito'>
+                <h2>Tu Pedido</h2>
+                <ul className='ul-carrito'>
+                    {carrito.map((pizza) => (
+                        <li key={pizza.id} className='li-carrito'>
+                            {pizza.nombre} 
+                            <div className='buttons-carrito'> 
+                                <p> Precio ${calcularPrecioPizza(pizza)}</p>
+
+                                <button onClick={() => incrementarCantidad(pizza.id)}>+</button>
+                                {pizza.cantidad}
+                                <button onClick={() => decrementarCantidad(pizza.id)}>-</button>
+
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                <hr />
+                <p className='total'>Total: ${calcularPrecioTotal()}</p>
+                <button>Cancelar totalidad</button>
+            </div>
         </div>
+        </>
     );
 }
 
